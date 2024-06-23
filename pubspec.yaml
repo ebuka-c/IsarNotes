@@ -1,5 +1,5 @@
 name: my_notes
-description: "Notes with Isar DB"
+description: "Notes"
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
@@ -17,6 +17,8 @@ dependencies:
   path_provider: ^2.1.2
   json_annotation: ^4.8.1
   provider: ^6.1.2
+  google_fonts:
+  popover:
 
 dev_dependencies:
   flutter_test:
