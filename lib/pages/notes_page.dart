@@ -30,30 +30,33 @@ class _NotesPageState extends State<NotesPage> {
     showDialog(
         context: context,
         builder: (context) => AlertDialog(
-              backgroundColor: Theme.of(context).colorScheme.primary,
-              content: TextField(
-                controller: textController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Add new note',
+                backgroundColor: Theme.of(context).colorScheme.primary,
+                content: TextField(
+                  controller: textController,
+                  decoration: const InputDecoration(
+                    focusedBorder: OutlineInputBorder(),
+                    hintText: 'Add new note',
+                  ),
                 ),
-              ),
-              actions: [
-                //create button
-                MaterialButton(
-                    textColor: Colors.white,
-                    onPressed: () {
-                      if (textController.text.isNotEmpty) {
-                        context
-                            .read<NoteDatabase>()
-                            .addNote(textController.text);
-                        Navigator.pop(context);
-                        textController.clear();
-                      }
-                    },
-                    child: const Text('Create'))
-              ],
-            ));
+                actions: [
+                  //create button
+                  MaterialButton(
+                      textColor: Colors.white,
+                      onPressed: () {
+                        if (textController.text.isNotEmpty) {
+                          context
+                              .read<NoteDatabase>()
+                              .addNote(textController.text);
+                          Navigator.pop(context);
+                          textController.clear();
+                        }
+                      },
+                      child: Text('Create',
+                          style: TextStyle(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .inversePrimary)))
+                ]));
   }
 
   //read notes
@@ -68,24 +71,31 @@ class _NotesPageState extends State<NotesPage> {
     showDialog(
         context: context,
         builder: (context) => AlertDialog(
-              title: const Text('Update Note'),
-              content: TextField(controller: textController),
-              backgroundColor: Theme.of(context).colorScheme.primary,
-              actions: [
-                MaterialButton(
-                    onPressed: () {
-                      //update note in db
-                      context
-                          .read<NoteDatabase>()
-                          .updateNote(note.id, textController.text);
-                      //clear the controller
-                      textController.clear();
-                      //pop dialog box
-                      Navigator.pop(context);
-                    },
-                    child: const Text('Update'))
-              ],
-            ));
+                title: const Text('Update Note'),
+                content: TextField(
+                  controller: textController,
+                  decoration: const InputDecoration(
+                      focusedBorder: UnderlineInputBorder()),
+                ),
+                backgroundColor: Theme.of(context).colorScheme.primary,
+                actions: [
+                  MaterialButton(
+                      onPressed: () {
+                        //update note in db
+                        context
+                            .read<NoteDatabase>()
+                            .updateNote(note.id, textController.text);
+                        //clear the controller
+                        textController.clear();
+                        //pop dialog box
+                        Navigator.pop(context);
+                      },
+                      child: Text('Update',
+                          style: TextStyle(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .inversePrimary)))
+                ]));
   }
 
   //delete a note
