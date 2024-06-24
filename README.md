@@ -1,4 +1,4 @@
-# my_notes
+# IsarNotes
 
 A mobile notes app implemented using Flutter and Isar NoSQL Database to create, read, update and delete notes,
 
